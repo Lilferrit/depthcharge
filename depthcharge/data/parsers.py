@@ -197,7 +197,7 @@ class BaseParser(ABC):
                             parsed = processor(parsed)
 
                     entry = {
-                        "peak_file": self.peak_file.name,
+                        "peak_file": str(self.peak_file.resolve()),
                         "scan_id": str(parsed.scan_id),
                         "ms_level": parsed.ms_level,
                         "precursor_mz": parsed.precursor_mz,

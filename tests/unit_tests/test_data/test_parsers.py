@@ -71,7 +71,7 @@ def test_mgf_and_base(mgf_small):
     )
     expected = pl.DataFrame(
         {
-            "peak_file": [mgf_small.name] * 2,
+            "peak_file": [str(mgf_small.resolve())] * 2,
             "scan_id": ["0", "1"],
             "ms_level": [2, 2],
             "precursor_mz": [416.24474357, 257.464565],
