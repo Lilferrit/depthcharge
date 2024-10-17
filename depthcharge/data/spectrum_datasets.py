@@ -9,7 +9,7 @@ from collections.abc import Generator, Iterable
 from os import PathLike
 from pathlib import Path
 from tempfile import TemporaryDirectory
-from typing import Any
+from typing import Any, Optional
 
 import lance
 import polars as pl
@@ -239,6 +239,7 @@ class SpectrumDataset(LanceDataset):
     def _to_tensor(
         self,
         batch: pa.RecordBatch,
+        hf_converter: Optional[Any] = None,
     ) -> dict[str, torch.Tensor | list[str | torch.Tensor]]:
         """Convert a record batch to tensors.
 
@@ -246,6 +247,8 @@ class SpectrumDataset(LanceDataset):
         ----------
         batch : pyarrow.RecordBatch
             The batch of data.
+        hf_converter : Optional[Any]
+            Does nothing; added to maintain compatibility with pylance
 
         Returns
         -------
@@ -351,6 +354,7 @@ class AnnotatedSpectrumDataset(SpectrumDataset):
     def _to_tensor(
         self,
         batch: pa.RecordBatch,
+        hf_converter : Optional[Any] = None,
     ) -> dict[str, torch.Tensor | list[str | torch.Tensor]]:
         """Convert a record batch to tensors.
 
@@ -358,7 +362,9 @@ class AnnotatedSpectrumDataset(SpectrumDataset):
         ----------
         batch : pyarrow.RecordBatch
             The batch of data.
-
+        hf_converter : Optional[Any]
+            Does nothing; added to maintain compatibility with pylance
+        
         Returns
         -------
         dict of str to tensors or lists
